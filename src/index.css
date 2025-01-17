@@ -59,11 +59,10 @@
 }
 
 html {
-  font-family: 'Inter', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 @supports (font-variation-settings: normal) {
   html {
-    font-family: 'Inter var', sans-serif;
+    font-family: "Roboto", sans-serif;
   }
 }
-

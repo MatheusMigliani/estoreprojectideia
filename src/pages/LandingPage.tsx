@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { Button } from "../components/app-ui/Button";
 import Card from "../components/app-ui/Card";
-import Carousel from "../components/app-ui/Carousel";
+//import Carousel from "../components/app-ui/Carousel";
+import { EmblaCarousel } from "../components/app-ui/EmblaLP";
 
 interface Product {
   id: number | null;
@@ -16,6 +17,24 @@ interface Product {
 const LandingPage = () => {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [carouselItems, setCarouselItems] = useState<Product[]>([]);
+
+  // useEffect(() => {
+  //   fetch("https://fakestoreapi.com/products?limit=16")
+  //     .then((res) => res.json())
+  //     .then((data: Product[]) => {
+  //       setFeaturedProducts(data.slice(0, 16));
+  //       setCarouselItems(
+  //         data.slice(4, 16).map((product) => ({
+  //           id: product.id,
+  //           image: product.image,
+  //           title: product.title,
+  //           description: product.description,
+  //           price: product.price,
+  //           category: product.category,
+  //         }))
+  //       );
+  //     });
+  // }, []);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products?limit=16")
@@ -43,22 +62,78 @@ const LandingPage = () => {
         transition={{ duration: 0.5 }}
         className="text-center mb-16"
       >
-        <h1 className="text-5xl font-extrabold text-foreground mb-4 leading-tight">
+        <h1 className="shadow-transparent shadow-xl underline text-5xl font-extrabold mb-4 leading-tight bg-gradient-to-r from-primary/80 via-foreground to-accent bg-clip-text text-transparent">
           Descubra, Compre e Venda no{" "}
-          <span className="text-primary">EcommerceApp</span>
+          <span className="text-primary relative group transition-all duration-300 hover:scale-110">
+            <span className="relative inline-block after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 group-hover:after:w-full">
+              EcommerceApp
+            </span>
+          </span>
         </h1>
         <p className="text-xl text-foreground/80 mb-8 max-w-2xl mx-auto">
           Sua plataforma completa para comprar e vender produtos únicos de forma
           fácil e segura.
         </p>
-        <Button size="lg">Comece a Vender</Button>
+        <Button
+          size="xl"
+          className="font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 gap-2 text-lg bg-gradient-to-r from-primary via-primary/80 to-indigo-400 hover:scale-105 text-white drop-shadow-[0_10px_10px_rgba(75,0,130,0.25)]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="animate-bounce"
+          >
+            <path d="M12 5v14" />
+            <path d="m19 12-7 7-7-7" />
+          </svg>
+          <span className="font-bold tracking-wide drop-shadow-lg">
+            Comece a Vender
+          </span>
+        </Button>
       </motion.section>
 
       <section className="mb-16">
-        <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
-          Produtos em Destaque
-        </h2>
-        <Carousel items={carouselItems} />
+        <span className="text-primary relative group transition-all duration-300 hover:scale-110 flex items-center justify-center gap-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="animate-pulse text-center inline-block align-middle"
+          >
+            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+          </svg>
+          <span className="text-5xl text-center font-bold mb-8 text-primary relative after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-0 after:h-1 after:bg-primary after:transition-all after:duration-300 group-hover:after:w-full">
+            Produtos em Destaque
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="animate-pulse text-center inline-block align-middle"
+          >
+            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+          </svg>
+        </span>
+        <EmblaCarousel items={carouselItems} />
       </section>
 
       <section className="mb-16">
